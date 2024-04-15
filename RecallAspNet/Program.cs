@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using RecallAspNet.Models;
 using System.Configuration;
 
@@ -13,11 +13,24 @@ namespace RecallAspNet
             // Add services to the container.
             var allServices = builder.Services;
                
-            builder.Services.AddDbContext<ApplicationDbContext>
-                (option => option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            
             builder.Services.AddRazorPages();
             builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
-            
+            string computerName = Environment.MachineName;
+
+            if (computerName.ToLower().Contains("gregor"))
+            {
+                builder.Services.AddDbContext<ApplicationDbContext>
+                (option => option.UseSqlServer(builder.Configuration.GetConnectionString("LaptopConnection")));           
+                Console.WriteLine("Система определила, что вы используете ноутбук.");
+            }
+            else
+            {
+                builder.Services.AddDbContext<ApplicationDbContext>
+                (option => option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+                Console.WriteLine("Система определила, что вы используете компьютер.");
+            }
+            //LaptopConnection
 
             var app = builder.Build();
 
