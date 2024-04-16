@@ -9,25 +9,46 @@
         <h2 class="text-info">Book List</h2>
     </div>
     <div class="col-3">
-        <a class="btn btn-info form-control text-white">Create New Book</a>
+        <a asp-page="CreateBook" class="btn btn-info form-control text-white">Create New Book</a>
     </div>
     <div class="col-12 border p-3 mt-3">
         <form method="post">
             @if (Model.Books.Count() > 0)
             {
-                <table class="table table-striped border">
+                <table class="table table-bordered border">
+                    <tr class="table-secondary ">
+                        <td class="border-r">
+                            @Html.DisplayNameFor(m => Model.Books.FirstOrDefault().Name)
+                        </td>
+                        <td>
+                            @Html.DisplayNameFor(m => Model.Books.FirstOrDefault().Author)
+                        </td>
+                        <td>
+                            @Html.DisplayNameFor(m => Model.Books.FirstOrDefault().ISBN)
+                        </td>
+                        <td>
+                            <label>Rule</label>
+                        </td>
+                    </tr>
                     @foreach (var item in Model.Books)
                     {
                         <tr class="table-primary">
-                            <th>
+                            <td>
                                 @Html.DisplayFor(m=>item.Name)
-                            </th>
-                            <th>
+                            </td>
+                            <td>
                                 @Html.DisplayFor(m => item.Author)
-                            </th>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.ISBN)
+                            </td>
+                            <td>
+                                <button class="btn btn-danger btn-sm">Delete</button>
+                                <a class="btn btn-success btn-sm">Edit</a>
+                            </td>
                         </tr>
-
                     }
+                       
                 </table>
              
             }

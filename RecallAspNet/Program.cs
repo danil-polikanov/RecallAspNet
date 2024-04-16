@@ -18,7 +18,7 @@ namespace RecallAspNet
             builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
             string computerName = Environment.MachineName;
 
-            if (computerName.ToLower().Contains("gregor"))
+            if (computerName.ToLower()=="gregor")
             {
                 builder.Services.AddDbContext<ApplicationDbContext>
                 (option => option.UseSqlServer(builder.Configuration.GetConnectionString("LaptopConnection")));           
