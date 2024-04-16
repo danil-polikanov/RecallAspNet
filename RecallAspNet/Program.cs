@@ -16,6 +16,7 @@ namespace RecallAspNet
             
             builder.Services.AddRazorPages();
             builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+            builder.Services.AddControllersWithViews();
             string computerName = Environment.MachineName;
 
             if (computerName.ToLower()=="gregor")
@@ -49,6 +50,7 @@ namespace RecallAspNet
 
             app.UseAuthorization();
 
+            app.MapControllers();
             app.MapRazorPages();
 
             app.Run();
