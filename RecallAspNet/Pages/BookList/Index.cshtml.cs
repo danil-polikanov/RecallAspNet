@@ -28,7 +28,7 @@ namespace RecallAspNet.Pages.BookList
                 }
                 _db.Book.Remove(book);
                 await _db.SaveChangesAsync();
-
+                
                 return RedirectToPage();
         }
     }
